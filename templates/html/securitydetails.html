@@ -1,0 +1,16 @@
+<h3 id="wel">{{ username }}</h3>
+<div id="sd">
+  <form id='sdf' action="javascript:sdf()" method="post" >{% csrf_token %}
+  	Security Question
+  	  <br>
+  	  <input name="sq" id="sdsq" type="text" size="50"/>
+  	  <br><br>
+  	Answer
+  	  <br>
+  	  <input name="sa" id="sdsa" type="text" size="50"/>
+  	  <br><br>
+  	<input name="sub" id="sdsub" type="submit" value="Save"/>
+  	<input name="return" id="sdreturn" type="hidden" value="{{ return }}" />
+  	<input name="cancel" id="pdcancel" type="button" value="Cancel"/>
+  </form>
+</div>

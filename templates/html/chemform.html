@@ -1,0 +1,14 @@
+<div align='center'>Change E-mail Id
+  <br><br>
+  <form id='cmf' action="javascript:cmf()" method="post" >{% csrf_token %}
+    Current Password
+      <input name="pw" id="cmpw" type="password" />
+      <br><br>
+    Email Id
+      <input name="em" id="cmem" type="email" onblur="cmfvalidatemail(this.value)"/>
+      <br><br>
+    <input name="sub" id="cmsub" type="submit" value="Save" />
+  </form>
+  <div id="cmres">
+  </div>
+</div>

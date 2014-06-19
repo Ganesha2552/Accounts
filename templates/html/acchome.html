@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>ZU-Accounts</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="{% static 'js/js.js' %}"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" >
+  <!--link rel="stylesheet" href="../css/tp/popup.css"-->
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"> </script>
+  <script src="{% static 'js/tp/jquery.bpopup.min.js' %}"> </script>
+  <link type="text/css" rel="stylesheet" href="{% static 'css/css.css' %}"/>
+</head>
+
+<body onload="load()">
+	
+  <header id="header" >
+    <a href="#" onclick="window.location.reload( true );" >
+      <img id="logo" src="{% static 'images/ZU-accounts.png' %}" title="ZU Accounts"/>
+    </a>
+    <div id='logout'>{{ username }}|
+      <a href='/accounts/logout/' onclick="logout()" >  LogOut  </a>
+    </div>
+  </header>
+
+  <div class="nav" id="navdiv" >
+  	<nav>
+      <span id="un">welcome  {{ username }}</span>
+      <span id="menu">
+        <ul>
+    	  <li><span><a href="/accounts/" onclick="home()" ><pre><h4>  Home  </h4></pre></a></span></li>
+        </ul>
+      </span>
+    </nav>
+  </div>
+  <br><br>
+  <div id="popup" title="User Profile Photo" style="height:auto;width:auto;">
+    <div style="cursor: auto; height: auto; display: block;">
+			 	<div><b>Upload Photo</b></div>
+				<div><small> Add a personal touch while using Zoho by uploading a Logo / Picture. The Image you upload will be displayed while accessing Zoho services.</small></div>
+	 			<form name="photo" enctype="multipart/form-data" action="/accounts/profile/picture/" method="post">{% csrf_token %}
+			 		<div style="margin-top: 10px; padding: 6px;">
+			 			<div style="margin-bottom: 10px;">
+		 					<label>Choose a Picture : </label> <label><input id="file" type="file" name="upload"/></label>
+						</div>
+			 			<div align="center" style="margin-left: 13px;">
+			 				<input id="submit" type="submit"  value="Upload" />
+			 				<!--input type="button" value="upload" onclick="uploadPhoto('{username}')"/-->
+			 				<!--button onclick="uploadPhoto(this.form,'{username}');">Upload</button-->
+							<input type="button" onclick="closePhotoPopUp()" value="Close" />
+	 					</div>
+	 					<div><small>Note:-
+	 						Supported file formats are jpg/gif/png/jpeg
+	 						</small>
+	 					</div>
+			 		</div>
+			 	</form>
+			</div>
+	 	</div>
+  
+  <div id="bodydiv">
+	<div id="menu-head" align="center" >
+	  <div id="photohead"><pre><h4 align="center"> Photo </h4></pre></div>
+  	  <div id="photo" align="center" >
+  		<img id="profile" src="{{ file }}" width="200px" height="200px"/>	
+  	  </div>
+  	  <pre>		<a id="upload" href="#" onclick="upload()"><h5>Change your profile photo</h5></a></pre>
+  	  <br>
+  	  <div id="chem" style="background-color:#d7d7d7;border:1px solid white;" onclick="chem()"><a href="javascript:;"> Change E-mail Id </a></div>
+  	  <div id="chpa" style="background-color:#d7d7d7;border:1px solid white;" onclick="chpa()"><a href="javascript:;"> Change Password </a></div>
+  	  <div id="chqa" style="background-color:#d7d7d7;border:1px solid white;" onclick="chqa()"><a href="javascript:;"> Change Security Question </a></div>
+  	</div>
+	<div id="content">
+	  <table class="loginhistory" name="active" border='0px' align='center'>
+	  	<tr>
+	  	  <th class="loginhistoryheader" width='40%'>Starting Time</th>
+	  	  <th class="loginhistoryheader" width='30%'>Connected From IP Address</th>
+	  	  <th class="loginhistoryheader" width='30%'>Action<th>
+	  	</tr>
+	  	{% block active %}
+	  	<tr>
+	  	  <td class="loginhistoryheader"> No Data</td>
+	  	  <td class="loginhistoryheader"> No Data</td>
+	  	  <td class="loginhistoryheader"> No Data</td>
+	  	</tr>
+	  	{% endblock %}
+	  </table>
+	</div>
+  </div>  
+  <footer id="footer" >
+   <div align="center" >
+     <p>&copy; 2013, ZUTKB1 All rights reserved.</p>
+   </div>
+  </footer>
+  
+</body>
+</html>

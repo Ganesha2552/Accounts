@@ -1,0 +1,17 @@
+<div align='center'>Change Password
+  <br><br>
+  <form id='cpf' action="javascript:cpf()" method="post" >{% csrf_token %}
+    Current Password
+      <input name="op" id="cpop" type="password" />
+      <br><br>
+    New Password
+      <input name="pw" id="cppw" type="password" onblur="chpassval(this.value)"/>
+      <br><br>
+    Confirm Password
+      <input name="cpw" id="cpcpw" type="password" onkeyup="chpasscheck(this.value)"/>
+      <br><br>
+    <input name="sub" id="cpsub" type="submit" value="Save" disabled=true />
+  </form>
+  <div id="cpres">
+  </div>
+</div>

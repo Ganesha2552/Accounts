@@ -1,0 +1,9 @@
+{% extends "test.html" %}
+{% block name %}
+{% for member in members %}
+<tr>
+	<td>{{member.email}}</td>
+	<td>{{member.username}}</td>
+</tr>
+{% endfor %}
+{% endblock %}

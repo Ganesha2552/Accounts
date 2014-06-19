@@ -1,0 +1,17 @@
+<div align="center">Change Security Question
+  <br><br>
+  <form id='csqf' action="javascript:csqf()" method="post" >{% csrf_token %}
+    Current Password
+      <input name="pw" id="csqpw" type="password" />
+      <br><br>
+    Security Question
+  	  <input name="sq" id="csqsq" type="text" size="50"/>
+  	  <br><br>
+  	Answer
+  	  <input name="sa" id="csqsa" type="text" size="50"/>
+  	  <br><br>
+  	<input name="sub" id="csqsub" type="submit" value="Save"/>
+  </form>
+  <div id="csqres">
+  </div>
+</div>

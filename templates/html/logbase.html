@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>ZU-Accounts</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="{% static 'css/css.css' %}"/>
+  <script type="text/javascript" src="{% static 'js/js.js' %}"> </script>
+</head>
+
+<body onload='login()'>
+	
+  <header id="header" >
+    <a href="#" onclick="window.location.reload( true );" >
+      <img id="logo" src="{% static 'images/ZU-accounts.png' %}" title="ZU Accounts" /></a>
+    <img id="welcome" src="{% static 'images/Welcome.png' %}" title="Welcome" />
+  </header>
+
+  <div id="bodydiv" >
+  	
+  	{% block body %}
+  	{% endblock %}
+  	
+     <div id="li">
+     	<div id="lires">
+     	</div>
+     	<form id='lif' action="javascript:lif()" method="post" >{% csrf_token %}
+     	  User Name or E-mail ID
+            <br>
+            <input name="un" id="liun" type="text" />
+            <br><br>
+          Password
+            <br>
+            <input name="pw" id="lipw" type="password" />
+            <br><br>
+          <input name="sub" id="lisub" type="submit" value="LogIn"/>
+          <input name="return" id="lireturn" type="hidden" value="{{ return }}" />
+          <a href="#" onclick="forgotpass()" >Forgot password?</a>
+          <br><br>
+          <a href="#" onclick="signup()" >SignUp</a>
+       </form>
+     </div>
+     
+     <div id="su">
+     	<form id='suf' action="javascript:suf()" method="post" >{% csrf_token %}
+     	  User Name
+            <br>
+            <input name="un" id="suun" type="text" onblur="validateuname(this.value)"/>
+            <br><br>
+          Email Id
+            <br>
+            <input name="em" id="suem" type="email" onblur="validatemail(this.value)"/>
+            <br><br>
+          Password
+            <br>
+            <input name="pw" id="supw" type="password" onblur="supassval(this.value)"/>
+            <br><br>
+          Confirm Password
+            <br>
+            <input name="cpw" id="sucpw" type="password" onkeyup="supasscheck(this.value)"/>
+            <br><br>
+          <input name="sub" id="susub" type="submit" value="SignUp" disabled=true />
+          <input name="return" id="sureturn" type="hidden" value="{{ return }}" />
+	      <br>
+	      <a href="#" onclick="login()" >LogIn</a>
+     	</form>
+     	<div id="sures">
+     	</div>
+     </div>
+     
+     <div id="fgpw">
+       <form id='fgpwf' action="javascript:fgpwf()" method="post" >{% csrf_token %}
+         Registered E-mail Id
+           <br>
+           <input name="em" id="fgpwem" type="email" onblur="validatemail(this.value)"/>
+           <br><br>
+         <input name="sub" id="fgpwsub" type="submit" value="Request" />
+         <input name="return" id="fgpwreturn" type="hidden" value="{{ return }}" />
+	     <input name="cancel" id="cancel" type="button" value="Cancel" onclick="login()" />
+       </form>  
+     </div>
+  </div>
+  
+  <footer id="footer" >
+   <div align="center" >
+     <p>&copy; 2013, ZUTKB1 All rights reserved.</p>
+   </div>
+  </footer>
+  
+</body>
+</html>
