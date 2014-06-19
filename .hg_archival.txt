@@ -1,5 +1,0 @@
-repo: 4acae69fdbdbaa94472efcf4b31fa53cbd288a33
-node: c16ea35cf7c16e85fb2205400ebadab0830381e2
-branch: default
-latesttag: zuaccounts_1.0
-latesttagdistance: 1
